@@ -27,21 +27,11 @@ function authorize($condition, $status = Response::FORBIDDEN){
     }
 }
 
-function login($value){
-    $_SESSION['user'] = [
-        'email' => $value
-    ];
-
-    session_regenerate_id(true);
+function redirect($path){
+    header("location: {$path}");
+    exit();
 }
 
-function logout(){
-    $_SESSION = [];
-    session_destroy();
-
-    $params = session_get_cookie_params();
-    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-}
 function base_path($value){
     return BASE_PATH . $value;
 }
