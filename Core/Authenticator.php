@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Authentictor
+class Authenticator
 {
 
     public function attempt($email, $password){

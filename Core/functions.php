@@ -1,6 +1,7 @@
 <?php
 
 use Core\Response;
+use Core\Session;
 
 function dd($value){
     echo "<pre>";
@@ -27,11 +28,6 @@ function authorize($condition, $status = Response::FORBIDDEN){
     }
 }
 
-function redirect($path){
-    header("location: {$path}");
-    exit();
-}
-
 function base_path($value){
     return BASE_PATH . $value;
 }
@@ -40,4 +36,13 @@ function views($value, $attributes = []){
     extract($attributes);
 
     require base_path("views/".$value);
+}
+
+function redirect($path){
+    header("location: {$path}");
+    exit();
+}
+
+function old($key, $default = ''){
+    return Session::get('old')[$key] ?? $default;
 }
